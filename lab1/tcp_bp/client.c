@@ -25,6 +25,19 @@ int main(){
     char msg[256]={0};
     recv(network_socket,&msg,sizeof(msg),0);
 
+    int n;
+    recv(network_socket,&n,sizeof(int),0);
+    int fact=1;
+    for(int i=1;i<=n;i++)
+    {
+        fact=fact*i;
+    }
+    printf("n is recieved");
+    send(network_socket,&fact,sizeof(int),0);
+    int arr[50];
+    recv(network_socket,arr,sizeof(int)*n,0);
+    printf("array is recieved");
+
     printf("the server sends the data ---> %s\n",msg);
     close(network_socket);
     return 0;

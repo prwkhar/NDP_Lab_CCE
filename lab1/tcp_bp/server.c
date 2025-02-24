@@ -32,7 +32,24 @@ int main(){
 
     //send message to the client address
     send(client_socket,server_message,sizeof(server_message),0);
+    int arr[50];
+    int n;
+    printf("enter value of n");
+    scanf("%d",&n);
+    send(client_socket,&n,sizeof(int),0);
+    printf("enter values of the array");
+    for(int i=0;i<n;i++)
+    {
+        scanf("%d",&arr[i]);
+    }
 
+    send(client_socket,&arr,n*sizeof(int),0);
+
+    //recving the fact of the number
+    int ans;
+    recv(client_socket,&ans,sizeof(int),0);
+    printf("factorial of the number is %d",ans);
+    close(client_socket);
     close(server_socket);
     return 0;
 }
